@@ -15,7 +15,8 @@ protocol AppTextButtonDelegate {
 class AppTextButton: UIView {
     
     var delegate: AppTextButtonDelegate?
-
+    private var title: String
+    
     private lazy var textLabel: UILabel = {
         var textLabel = UILabel()
         textLabel.font = UIFont.systemFont(ofSize: 13.0)
@@ -32,6 +33,7 @@ class AppTextButton: UIView {
     
     // life cycle
     init(withText: String, title: String) {
+        self.title = title
         super.init(frame: .zero)
         textLabel.text = withText
         button.setTitle(title, for: .normal)
@@ -40,6 +42,17 @@ class AppTextButton: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //public
+    func setTextAndTitle(text: String, title: String) {
+        self.title = title
+        textLabel.text = text
+        button.setTitle(title, for: .normal)
+    }
+    
+    func getTitle() -> String {
+        return title
     }
     
     //private
