@@ -8,5 +8,7 @@
 import UIKit
 
 struct Theme {
-    static var startBackgroundColor = UIColor(hexString: "#F5F5F5")
+    static let startBackgroundColor = UIColor(hexString: "#F5F5F5")
+    static let defaulTextFieldBackgroundColor = UIColor(hexString: "#7592DD", alpha: 0.1)
+    static let defaulButtonBackgroundColor = UIColor(hexString: "#7592DD")
 }
