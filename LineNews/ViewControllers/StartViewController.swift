@@ -65,6 +65,7 @@ class StartViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
         navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.navigationBar.layoutMargins.left = 30.0
         navigationItem.backButtonTitle = ""
         switch style {
         case .login:
@@ -78,37 +79,11 @@ class StartViewController: UIViewController {
             noAccountOrRegisterView.setTextAndTitle(text: "У Вас есть аккаунт ?", title: "Войти")
             resetPasswordView.isHidden = true
             navigationController?.setNavigationBarHidden(false, animated: true)
-            navigationController?.navigationBar.prefersLargeTitles = true
-            navigationController?.navigationBar.layoutMargins.left = 30.0
             setupViews()
         case .resetPassword:
             navigationController?.setNavigationBarHidden(false, animated: true)
-            navigationController?.navigationItem.largeTitleDisplayMode = .never
             title = "Сброс пароля"
-            
-            setupViews()
-            resetPasswordView.isHidden = true
-            passwordTextField.isHidden = true
-            noAccountOrRegisterView.isHidden = true
-            
-            loginButton.setTitle("Сбросить пароль", for: .normal)
-            loginButton.snp.remakeConstraints { make in
-                make.top.equalTo(loginTextField.snp.bottom).offset(20.0)
-                make.left.equalTo(87.0)
-                make.right.equalTo(-87.0)
-                make.height.equalTo(42.0)
-            }
-            
-            let descriptionLabel = UILabel()
-            view.addSubview(descriptionLabel)
-            descriptionLabel.numberOfLines = 2
-            descriptionLabel.font = UIFont.systemFont(ofSize: 13.0)
-            descriptionLabel.text = "Инструкция по сбросу пароля\nпридет Вам на почту"
-            descriptionLabel.textAlignment = .center
-            descriptionLabel.snp.makeConstraints { make in
-                make.top.equalTo(loginButton.snp.bottom).offset(20.0)
-                make.centerX.equalTo(loginButton)
-            }
+            resetPasswordSetups()
         }
     }
     
@@ -121,8 +96,8 @@ class StartViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.largeTitleDisplayMode = style == .login ? .always : .never
-        navigationController?.navigationBar.prefersLargeTitles = style == .login ? true : false
+        navigationItem.largeTitleDisplayMode = style == .resetPassword ? .never: .always
+        navigationController?.navigationBar.prefersLargeTitles = style == .resetPassword ? false : true
     }
     
     //private
@@ -175,14 +150,40 @@ class StartViewController: UIViewController {
         }
     }
     
+    private func resetPasswordSetups() {
+        setupViews()
+        resetPasswordView.isHidden = true
+        passwordTextField.isHidden = true
+        noAccountOrRegisterView.isHidden = true
+        
+        loginButton.setTitle("Сбросить пароль", for: .normal)
+        loginButton.snp.remakeConstraints { make in
+            make.top.equalTo(loginTextField.snp.bottom).offset(20.0)
+            make.left.equalTo(87.0)
+            make.right.equalTo(-87.0)
+            make.height.equalTo(42.0)
+        }
+        
+        let descriptionLabel = UILabel()
+        view.addSubview(descriptionLabel)
+        descriptionLabel.numberOfLines = 2
+        descriptionLabel.font = UIFont.systemFont(ofSize: 13.0)
+        descriptionLabel.text = "Инструкция по сбросу пароля\nпридет Вам на почту"
+        descriptionLabel.textAlignment = .center
+        descriptionLabel.snp.makeConstraints { make in
+            make.top.equalTo(loginButton.snp.bottom).offset(20.0)
+            make.centerX.equalTo(loginButton)
+        }
+    }
+    
     @objc
     private func loginButtonAction() {
         print("loginButtonAction")
         //test@mail.ru, 123456
-        if loginTextField.text == nil && passwordTextField.text == nil {
-            
-        } else if loginTextField.text == "test@mail.ru" && passwordTextField.text == "123456" {
-            
+        if loginTextField.text == "test@mail.ru" && passwordTextField.text == "123456" {
+            let mainVC = MainTabBarViewController()
+            mainVC.modalPresentationStyle = .fullScreen
+            present(mainVC, animated: false)
         } else {
             
         }
@@ -196,8 +197,6 @@ extension StartViewController: SwiftyGifDelegate {
             logoAnimationView.isHidden = true
         }
         navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.layoutMargins.left = 30.0
         setupViews()
     }
 }

@@ -14,7 +14,7 @@ open class AppButton: UIButton {
         super.init(frame: .zero)
         setTitle(withTitle, for: .normal)
         setTitleColor(.white, for: .normal)
-        backgroundColor = Theme.defaulButtonBackgroundColor
+        backgroundColor = Theme.defaultButtonBackgroundColor
         layer.cornerRadius = 20.0
     }
 

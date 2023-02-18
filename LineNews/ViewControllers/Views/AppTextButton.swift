@@ -25,7 +25,7 @@ class AppTextButton: UIView {
     
     private lazy var button: UIButton = {
         var button = UIButton()
-        button.setTitleColor(Theme.defaulButtonBackgroundColor, for: .normal)
+        button.setTitleColor(Theme.defaultButtonBackgroundColor, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13.0)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         return button

@@ -30,7 +30,7 @@ open class AppTextField: UITextField {
     init(withPlaceholder: String) {
         super.init(frame: .zero)
         placeholder = withPlaceholder
-        backgroundColor = Theme.defaulTextFieldBackgroundColor
+        backgroundColor = Theme.defaultTextFieldBackgroundColor
         layer.cornerRadius = 20.0
     }
 

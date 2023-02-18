@@ -13,6 +13,12 @@
 		C917C73429A0EC4B00F7B49D /* AppTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917C73329A0EC4B00F7B49D /* AppTextField.swift */; };
 		C917C73629A0F06B00F7B49D /* AppButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917C73529A0F06B00F7B49D /* AppButton.swift */; };
 		C917C73829A0F4E100F7B49D /* AppTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917C73729A0F4E100F7B49D /* AppTextButton.swift */; };
+		C917C73D29A1485000F7B49D /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917C73C29A1485000F7B49D /* MainTabBarViewController.swift */; };
+		C917C74129A14E5D00F7B49D /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917C74029A14E5D00F7B49D /* NewsTableViewController.swift */; };
+		C917C74429A14E9E00F7B49D /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917C74329A14E9E00F7B49D /* NewsTableViewCell.swift */; };
+		C917C74729A14FA600F7B49D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917C74629A14FA600F7B49D /* MapViewController.swift */; };
+		C917C74A29A150BA00F7B49D /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917C74929A150BA00F7B49D /* FavouritesViewController.swift */; };
+		C917C74D29A150F300F7B49D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917C74C29A150F300F7B49D /* ProfileViewController.swift */; };
 		C96D191B29A0CB8B0056C3F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96D191A29A0CB8B0056C3F9 /* AppDelegate.swift */; };
 		C96D191D29A0CB8B0056C3F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96D191C29A0CB8B0056C3F9 /* SceneDelegate.swift */; };
 		C96D191F29A0CB8B0056C3F9 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96D191E29A0CB8B0056C3F9 /* StartViewController.swift */; };
@@ -32,6 +38,12 @@
 		C917C73329A0EC4B00F7B49D /* AppTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextField.swift; sourceTree = "<group>"; };
 		C917C73529A0F06B00F7B49D /* AppButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppButton.swift; sourceTree = "<group>"; };
 		C917C73729A0F4E100F7B49D /* AppTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextButton.swift; sourceTree = "<group>"; };
+		C917C73C29A1485000F7B49D /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		C917C74029A14E5D00F7B49D /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
+		C917C74329A14E9E00F7B49D /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		C917C74629A14FA600F7B49D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		C917C74929A150BA00F7B49D /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
+		C917C74C29A150F300F7B49D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C96D191729A0CB8B0056C3F9 /* LineNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LineNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C96D191A29A0CB8B0056C3F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C96D191C29A0CB8B0056C3F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				C96D191E29A0CB8B0056C3F9 /* StartViewController.swift */,
+				C917C73929A1470300F7B49D /* TabBarViewControllers */,
 				C917C73229A0EC3900F7B49D /* Views */,
 			);
 			path = ViewControllers;
@@ -106,6 +119,59 @@
 				C917C73529A0F06B00F7B49D /* AppButton.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C917C73929A1470300F7B49D /* TabBarViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C917C73C29A1485000F7B49D /* MainTabBarViewController.swift */,
+				C917C73E29A14E3800F7B49D /* News */,
+				C917C74529A14F9200F7B49D /* Map */,
+				C917C74829A150A400F7B49D /* Favourites */,
+				C917C74B29A150E000F7B49D /* Profile */,
+			);
+			path = TabBarViewControllers;
+			sourceTree = "<group>";
+		};
+		C917C73E29A14E3800F7B49D /* News */ = {
+			isa = PBXGroup;
+			children = (
+				C917C74029A14E5D00F7B49D /* NewsTableViewController.swift */,
+				C917C74229A14E8700F7B49D /* Views */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		C917C74229A14E8700F7B49D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C917C74329A14E9E00F7B49D /* NewsTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C917C74529A14F9200F7B49D /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				C917C74629A14FA600F7B49D /* MapViewController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		C917C74829A150A400F7B49D /* Favourites */ = {
+			isa = PBXGroup;
+			children = (
+				C917C74929A150BA00F7B49D /* FavouritesViewController.swift */,
+			);
+			path = Favourites;
+			sourceTree = "<group>";
+		};
+		C917C74B29A150E000F7B49D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C917C74C29A150F300F7B49D /* ProfileViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		C96D190E29A0CB8B0056C3F9 = {
@@ -270,13 +336,19 @@
 				C917C73829A0F4E100F7B49D /* AppTextButton.swift in Sources */,
 				C96D191F29A0CB8B0056C3F9 /* StartViewController.swift in Sources */,
 				C917C72E29A0E20900F7B49D /* ColorHex.swift in Sources */,
+				C917C74A29A150BA00F7B49D /* FavouritesViewController.swift in Sources */,
 				C96D191B29A0CB8B0056C3F9 /* AppDelegate.swift in Sources */,
+				C917C74429A14E9E00F7B49D /* NewsTableViewCell.swift in Sources */,
+				C917C74D29A150F300F7B49D /* ProfileViewController.swift in Sources */,
 				C917C73629A0F06B00F7B49D /* AppButton.swift in Sources */,
+				C917C74129A14E5D00F7B49D /* NewsTableViewController.swift in Sources */,
 				C96D193929A0D65D0056C3F9 /* LogoAnimationView.swift in Sources */,
 				C96D192529A0CB8B0056C3F9 /* LineNews.xcdatamodeld in Sources */,
 				C96D191D29A0CB8B0056C3F9 /* SceneDelegate.swift in Sources */,
+				C917C73D29A1485000F7B49D /* MainTabBarViewController.swift in Sources */,
 				C917C73129A0E3A600F7B49D /* Theme.swift in Sources */,
 				C917C73429A0EC4B00F7B49D /* AppTextField.swift in Sources */,
+				C917C74729A14FA600F7B49D /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
