@@ -180,13 +180,13 @@ class StartViewController: UIViewController {
     private func loginButtonAction() {
         print("loginButtonAction")
         //test@mail.ru, 123456
-        if loginTextField.text == "test@mail.ru" && passwordTextField.text == "123456" {
+//        if loginTextField.text == "test@mail.ru" && passwordTextField.text == "123456" {
             let mainVC = MainTabBarViewController()
             mainVC.modalPresentationStyle = .fullScreen
             present(mainVC, animated: false)
-        } else {
-            
-        }
+//        } else {
+//            
+//        }
     }
 }
 

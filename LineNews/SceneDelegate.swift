@@ -14,9 +14,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = UINavigationController(rootViewController: StartViewController(style: .login))
+        let startVC = StartViewController(style: .login)
+        window?.rootViewController = UINavigationController(rootViewController: startVC)
         window?.makeKeyAndVisible()
     }
+    
+//    private func loadNews(completion: @escaping ([ArticlesNews]) -> ()) {
+//        let service: ServiceFetcherProtocol = ServiceFetcher()
+//        service.fetchSpaceRokets { response in
+//            guard let response = response else {
+//                return
+//            }
+//            completion(response.articles)
+//        }
+//    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
