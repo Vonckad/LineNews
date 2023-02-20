@@ -51,7 +51,10 @@ class DetailNewsViewController: UIViewController {
     
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        image.layer.cornerRadius = 22.0
+        image.layer.maskedCorners = [CACornerMask.layerMinXMaxYCorner, CACornerMask.layerMaxXMaxYCorner]
         if let url = URL(string: newsItem.urlToImage ?? "") {
             image.kf.setImage(with: url)
         }
