@@ -18,7 +18,7 @@ class NewsTableViewCell: UITableViewCell {
     
     var newsItem: ArticlesNews! {
         didSet {
-            dateLabel.text = getFormattedDate(newsItem.publishedAt ?? "")
+            dateLabel.text = Utils.getFormattedDate(newsItem.publishedAt ?? "")
             titleLabel.text = newsItem.title
             newsImageView.kf.indicatorType = .activity
             guard let urlImage = URL(string: newsItem.urlToImage ?? "") else { return }
@@ -109,13 +109,13 @@ class NewsTableViewCell: UITableViewCell {
             make.top.equalTo(contentView)
             make.leading.equalTo(contentView)
             make.trailing.equalTo(contentView)
-            make.height.equalTo(200.0)
+            make.height.equalTo(180.0)
         }
         
         dateLabel.snp.makeConstraints { make in
             make.top.equalTo(newsImageView.snp.bottom).offset(10.0)
             make.leading.equalToSuperview().offset(18.0)
-            make.trailing.equalToSuperview()
+//            make.trailing.equalToSuperview()
         }
         
         likeButton.snp.makeConstraints { make in
@@ -136,18 +136,6 @@ class NewsTableViewCell: UITableViewCell {
             make.trailing.equalToSuperview().inset(16.0)
             make.bottom.equalToSuperview().inset(12.0)
         }
-    }
-    
-    private func getFormattedDate(_ string: String) -> String {
-        let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-
-        let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.locale = Locale(identifier: "RUS")
-        dateFormatterPrint.dateFormat = "dd MMMM"
-
-        let date: Date? = dateFormatterGet.date(from: string)
-        return dateFormatterPrint.string(from: date!)
     }
     
     @objc

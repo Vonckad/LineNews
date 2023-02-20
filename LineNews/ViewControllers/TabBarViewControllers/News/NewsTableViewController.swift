@@ -15,15 +15,37 @@ class NewsTableViewController: UITableViewController {
         }
     }
     
+    private lazy var activityIndicatorView: UIActivityIndicatorView = {
+        let activityIndicatorView = UIActivityIndicatorView(style: .large)
+        activityIndicatorView.frame = CGRect(x: 0, y: 0, width: 37, height: 37)
+        activityIndicatorView.startAnimating()
+        activityIndicatorView.hidesWhenStopped = true
+        return activityIndicatorView
+    }()
+    
     //Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.addSubview(activityIndicatorView)
+        activityIndicatorView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalTo(UIScreen.main.bounds.maxX / 2)
+        }
         tableView.backgroundColor = Theme.defaultBackgroundColor
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 600
         tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
+        navigationItem.backButtonTitle = ""
         loadNews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.black]
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.black]
     }
     
     //private
@@ -33,6 +55,7 @@ class NewsTableViewController: UITableViewController {
             guard let response = response else {
                 return
             }
+            self.activityIndicatorView.stopAnimating()
             self.newsModel = response.articles
         }
     }
@@ -74,6 +97,11 @@ class NewsTableViewController: UITableViewController {
         if let cell = cell as? NewsTableViewCell {
             cell.cancelDownloadTask()
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = DetailNewsViewController(newsModel[indexPath.section])
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
