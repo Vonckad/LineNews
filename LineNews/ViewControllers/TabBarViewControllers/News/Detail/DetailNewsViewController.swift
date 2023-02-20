@@ -63,7 +63,7 @@ class DetailNewsViewController: UIViewController {
     
     private lazy var webViewButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Читайть на сайте", for: .normal)
+        button.setTitle("Читать на сайте", for: .normal)
         button.addTarget(nil, action: #selector(openWebView), for: .touchUpInside)
         return button
     }()

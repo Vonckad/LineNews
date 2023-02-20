@@ -51,8 +51,12 @@ class NewsTableViewController: UITableViewController {
     //private
     private func loadNews() {
         let service: ServiceFetcherProtocol = ServiceFetcher()
-        service.fetchSpaceRokets { response in
+        service.fetchSpaceRokets { [weak self] response in
+            guard let self = self else { return }
             guard let response = response else {
+                UIAlertController.showAlertView(viewController: self, style: .networkError) { _ in
+                    self.loadNews()
+                }
                 return
             }
             self.activityIndicatorView.stopAnimating()

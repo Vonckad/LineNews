@@ -179,14 +179,37 @@ class StartViewController: UIViewController {
     @objc
     private func loginButtonAction() {
         print("loginButtonAction")
-        //test@mail.ru, 123456
-//        if loginTextField.text == "test@mail.ru" && passwordTextField.text == "123456" {
-            let mainVC = MainTabBarViewController()
-            mainVC.modalPresentationStyle = .fullScreen
-            present(mainVC, animated: false)
-//        } else {
-//            
-//        }
+        
+        switch style {
+        case .login:
+            //test@mail.ru, 123456
+            if loginTextField.text == "test@mail.ru" && passwordTextField.text == "123456" {
+                let mainVC = MainTabBarViewController()
+                mainVC.modalPresentationStyle = .fullScreen
+                present(mainVC, animated: false)
+            } else {
+                UIAlertController.showAlertView(viewController: self, style: .incorrectUsernameOrPassword)
+            }
+            
+        case .register:
+            if loginTextField.text == "" || passwordTextField.text == "" {
+                UIAlertController.showAlertView(viewController: self, style: .emptyFields)
+            } else {
+                let mainVC = MainTabBarViewController()
+                mainVC.modalPresentationStyle = .fullScreen
+                present(mainVC, animated: false)
+            }
+            
+        case .resetPassword:
+            UIAlertController.showAlertView(viewController: self,
+                                            style: loginTextField.text == ""
+                                            ? .incorrectnessMail : .successfully) { [weak self] _ in
+                guard let self = self else { return }
+                if self.loginTextField.text != "" {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+        }
     }
 }
 
