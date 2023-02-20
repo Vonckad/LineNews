@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		69B2E60D1FCDA3241C8CEB09 /* Pods_LineNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C0B4B01811AF2D5A7F328EB /* Pods_LineNews.framework */; };
+		C90DCF0B29A3DF7600436D81 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90DCF0A29A3DF7600436D81 /* Artwork.swift */; };
 		C917C72E29A0E20900F7B49D /* ColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917C72D29A0E20900F7B49D /* ColorHex.swift */; };
 		C917C73129A0E3A600F7B49D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917C73029A0E3A600F7B49D /* Theme.swift */; };
 		C917C73429A0EC4B00F7B49D /* AppTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917C73329A0EC4B00F7B49D /* AppTextField.swift */; };
@@ -39,6 +40,7 @@
 		1C0B4B01811AF2D5A7F328EB /* Pods_LineNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LineNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38A10DAD402D9C675399A930 /* Pods-LineNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LineNews.debug.xcconfig"; path = "Target Support Files/Pods-LineNews/Pods-LineNews.debug.xcconfig"; sourceTree = "<group>"; };
 		81EE85A6F4C4323DBF8B07AB /* Pods-LineNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LineNews.release.xcconfig"; path = "Target Support Files/Pods-LineNews/Pods-LineNews.release.xcconfig"; sourceTree = "<group>"; };
+		C90DCF0A29A3DF7600436D81 /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		C917C72D29A0E20900F7B49D /* ColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHex.swift; sourceTree = "<group>"; };
 		C917C73029A0E3A600F7B49D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		C917C73329A0EC4B00F7B49D /* AppTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextField.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				C917C74629A14FA600F7B49D /* MapViewController.swift */,
+				C90DCF0A29A3DF7600436D81 /* Artwork.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				C917C73129A0E3A600F7B49D /* Theme.swift in Sources */,
 				C9DFEBD729A3656400E6CF7D /* Utils.swift in Sources */,
 				C917C75329A1786C00F7B49D /* ServiceFetcher.swift in Sources */,
+				C90DCF0B29A3DF7600436D81 /* Artwork.swift in Sources */,
 				C917C73429A0EC4B00F7B49D /* AppTextField.swift in Sources */,
 				C917C74729A14FA600F7B49D /* MapViewController.swift in Sources */,
 			);
@@ -548,6 +552,7 @@
 				DEVELOPMENT_TEAM = E4F3RD8E26;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LineNews/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -576,6 +581,7 @@
 				DEVELOPMENT_TEAM = E4F3RD8E26;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LineNews/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
