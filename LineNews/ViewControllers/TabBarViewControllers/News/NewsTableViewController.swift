@@ -18,7 +18,6 @@ class NewsTableViewController: UITableViewController {
     private lazy var activityIndicatorView: UIActivityIndicatorView = {
         let activityIndicatorView = UIActivityIndicatorView(style: .large)
         activityIndicatorView.frame = CGRect(x: 0, y: 0, width: 37, height: 37)
-        activityIndicatorView.startAnimating()
         activityIndicatorView.hidesWhenStopped = true
         return activityIndicatorView
     }()
@@ -46,10 +45,14 @@ class NewsTableViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.black]
         navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.black]
+        if newsModel.isEmpty {
+            loadNews()
+        }
     }
     
     //private
     private func loadNews() {
+        activityIndicatorView.startAnimating()
         let service: ServiceFetcherProtocol = ServiceFetcher()
         service.fetchSpaceRokets { [weak self] response in
             guard let self = self else { return }

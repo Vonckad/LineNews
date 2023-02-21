@@ -36,9 +36,8 @@ class NewsTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private let likeButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "heart"), for: .normal)
+    private let likeButton: LikeButton = {
+        let button = LikeButton()
         button.addTarget(nil, action: #selector(didSelectLikeButton), for: .touchUpInside)
         return button
     }()
@@ -115,7 +114,6 @@ class NewsTableViewCell: UITableViewCell {
         dateLabel.snp.makeConstraints { make in
             make.top.equalTo(newsImageView.snp.bottom).offset(10.0)
             make.leading.equalToSuperview().offset(18.0)
-//            make.trailing.equalToSuperview()
         }
         
         likeButton.snp.makeConstraints { make in
@@ -140,6 +138,7 @@ class NewsTableViewCell: UITableViewCell {
     
     @objc
     private func didSelectLikeButton() {
+        likeButton.toggleImage()
         delegate?.didPressLike(newsItem: newsItem)
     }
 }

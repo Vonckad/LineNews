@@ -50,7 +50,8 @@ extension UIAlertController {
         case .networkError:
             return AlertStringParams(title: "Сбой загрузки!",
                                      message: "Проверьте подключение к интернету",
-                                     actionTitle: "Обновить")
+                                     actionTitle: "Обновить",
+                                     cancelTitle: "Отмена")
         case .logout:
             return AlertStringParams(title: "Выход",
                                      message: "Вы уверены, что хотите выйти из аккаунта",
@@ -74,6 +75,4 @@ extension UIAlertController {
                                      actionTitle: "Ок")
         }
     }
-    
-    
 }

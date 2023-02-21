@@ -26,9 +26,8 @@ class DetailNewsViewController: UIViewController {
         return label
     }()
     
-    private let likeButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "heart"), for: .normal)
+    private let likeButton: LikeButton = {
+        let button = LikeButton()
         button.addTarget(nil, action: #selector(didSelectLikeButton), for: .touchUpInside)
         return button
     }()
@@ -116,7 +115,7 @@ class DetailNewsViewController: UIViewController {
             make.top.equalToSuperview()
             make.leading.equalTo(view)
             make.trailing.equalTo(view)
-            make.height.lessThanOrEqualTo(250)
+            make.height.lessThanOrEqualTo(200)
         }
         
         contentView.snp.makeConstraints { make in
@@ -159,7 +158,9 @@ class DetailNewsViewController: UIViewController {
     }
     
     @objc
-    private func didSelectLikeButton() {
+    private func didSelectLikeButton() {        
+        likeButton.toggleImage()
+
 //        delegate?.didPressLike(newsItem: newsItem)
     }
     
