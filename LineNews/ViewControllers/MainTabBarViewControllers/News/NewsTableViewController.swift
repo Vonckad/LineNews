@@ -8,6 +8,8 @@
 import UIKit
 
 class NewsTableViewController: UITableViewController {
+    
+    private let coreDataStack = AppDelegate.sharedAppDelegate.coreDataStack
 
     private var newsModel: [ArticlesNews] = [] {
         didSet {
@@ -48,6 +50,7 @@ class NewsTableViewController: UITableViewController {
         if newsModel.isEmpty {
             loadNews()
         }
+        checkLike()
     }
     
     //private
@@ -64,6 +67,7 @@ class NewsTableViewController: UITableViewController {
             }
             self.activityIndicatorView.stopAnimating()
             self.newsModel = response.articles
+            self.checkLike()
         }
     }
 
@@ -77,7 +81,7 @@ class NewsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! NewsTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as? NewsTableViewCell else { return UITableViewCell() }
         cell.newsItem = newsModel[indexPath.section]
         cell.selectionStyle = .none
         cell.backgroundColor = .white
@@ -99,13 +103,7 @@ class NewsTableViewController: UITableViewController {
         return headerView
     }
     
-    // MARK: - Table view delegate
-    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let cell = cell as? NewsTableViewCell {
-            cell.cancelDownloadTask()
-        }
-    }
-    
+    // MARK: - Table view delegate    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DetailNewsViewController(newsModel[indexPath.section])
         navigationController?.pushViewController(detailVC, animated: true)
@@ -114,7 +112,34 @@ class NewsTableViewController: UITableViewController {
 
 //MARK: - NewsTableViewCellDelegate
 extension NewsTableViewController: NewsTableViewCellDelegate {
-    func didPressLike(newsItem: ArticlesNews) {
-        print("didPressLike \(String(describing: newsItem.title))")
+    func didPressLike(newsItem: ArticlesNews, newsImage: UIImage?, isLiked: Bool) {
+        if isLiked {
+            saveNewsItem(newsItem: newsItem, newsImage: newsImage)
+        } else {
+            deleteNewsItem(newsItem: newsItem)
+        }
+        checkLike()
+    }
+}
+
+//MARK: - CoreDate
+extension NewsTableViewController {
+    //save in CoreData
+    private func saveNewsItem(newsItem: ArticlesNews, newsImage: UIImage?) {
+        coreDataStack.createFavoriteNews(newsItem: newsItem,
+                                         newsImageData: newsImage?.pngData())
+    }
+    
+    //delete from CoreData
+    private func deleteNewsItem(newsItem: ArticlesNews) {
+        coreDataStack.deleteNews(news: newsItem)
+    }
+    
+    private func checkLike() {
+        let saveNews = coreDataStack.getAllNews()
+        for (index, news) in newsModel.enumerated() {
+            newsModel[index].isLiked = saveNews.contains(where: {$0.url == news.url})
+        }
+        tableView.reloadData()
     }
 }

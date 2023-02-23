@@ -18,16 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = UINavigationController(rootViewController: startVC)
         window?.makeKeyAndVisible()
     }
-    
-//    private func loadNews(completion: @escaping ([ArticlesNews]) -> ()) {
-//        let service: ServiceFetcherProtocol = ServiceFetcher()
-//        service.fetchSpaceRokets { response in
-//            guard let response = response else {
-//                return
-//            }
-//            completion(response.articles)
-//        }
-//    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -57,9 +47,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
 
         // Save changes in the application's managed object context when the application transitions to the background.
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+        AppDelegate.sharedAppDelegate.coreDataStack.saveContext()
     }
-
-
 }
-

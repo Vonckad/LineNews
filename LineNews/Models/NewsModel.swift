@@ -13,10 +13,12 @@ struct NewsModel: Decodable {
     var articles: [ArticlesNews]
 }
 
-struct ArticlesNews: Decodable {
+struct ArticlesNews: Decodable, Equatable {
     var title: String?
     var description: String?
     var urlToImage: String?
     var publishedAt: String?
     var url: String?
+    var imageData: Data? // for CoreData
+    var isLiked: Bool?   // for CoreData
 }

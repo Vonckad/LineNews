@@ -7,7 +7,6 @@ target 'LineNews' do
 
   # Pods for LineNews
 	pod 'SwiftyGif'
+	pod 'SDWebImage'
 	pod 'SnapKit'
-	pod 'Kingfisher', '~> 7.0'
-
 end

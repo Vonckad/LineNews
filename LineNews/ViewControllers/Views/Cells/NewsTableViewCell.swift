@@ -6,10 +6,10 @@
 //
 
 import UIKit
-import Kingfisher
+import SDWebImage
 
 protocol NewsTableViewCellDelegate {
-    func didPressLike(newsItem: ArticlesNews)
+    func didPressLike(newsItem: ArticlesNews, newsImage: UIImage?, isLiked: Bool)
 }
 
 class NewsTableViewCell: UITableViewCell {
@@ -19,13 +19,18 @@ class NewsTableViewCell: UITableViewCell {
     var newsItem: ArticlesNews! {
         didSet {
             dateLabel.text = Utils.getFormattedDate(newsItem.publishedAt ?? "")
+            if let like = newsItem.isLiked {
+                likeButton.setLike(like)
+            }
             titleLabel.text = newsItem.title
-            newsImageView.kf.indicatorType = .activity
-            guard let urlImage = URL(string: newsItem.urlToImage ?? "") else { return }
-            newsImageView.kf.indicatorType = .activity
-            newsImageView.kf.setImage(with: urlImage,
-                                      options: [.transition(.fade(0.3))])
             descriptionLabel.text = newsItem.description
+    
+            if var urlComponents = URLComponents(string: newsItem.urlToImage ?? "") {
+                urlComponents.query = nil
+                if let url = urlComponents.url {
+                    newsImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "No-Image-Placeholder"))
+                }
+            }
         }
     }
     
@@ -91,11 +96,6 @@ class NewsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //public
-    func cancelDownloadTask() {
-        newsImageView.kf.cancelDownloadTask()
-    }
-    
     //private
     private func setupViews() {
         contentView.addSubview(newsImageView)
@@ -139,7 +139,6 @@ class NewsTableViewCell: UITableViewCell {
     @objc
     private func didSelectLikeButton() {
         likeButton.toggleImage()
-        delegate?.didPressLike(newsItem: newsItem)
+        delegate?.didPressLike(newsItem: newsItem, newsImage: newsImageView.image, isLiked: likeButton.isLiked)
     }
 }
-

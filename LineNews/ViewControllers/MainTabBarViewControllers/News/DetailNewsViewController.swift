@@ -6,12 +6,13 @@
 //
 
 import UIKit
-import Kingfisher
+import SDWebImage
 import SafariServices
 
 class DetailNewsViewController: UIViewController {
     
-    private let newsItem: ArticlesNews
+    private let coreDataStack = AppDelegate.sharedAppDelegate.coreDataStack
+    private var newsItem: ArticlesNews
     
     private var contentView: UIView = {
         let view = UIView()
@@ -26,9 +27,12 @@ class DetailNewsViewController: UIViewController {
         return label
     }()
     
-    private let likeButton: LikeButton = {
+    private lazy var likeButton: LikeButton = {
         let button = LikeButton()
         button.addTarget(nil, action: #selector(didSelectLikeButton), for: .touchUpInside)
+        if let like = newsItem.isLiked {
+            button.setLike(like)
+        }
         return button
     }()
     
@@ -54,9 +58,16 @@ class DetailNewsViewController: UIViewController {
         image.clipsToBounds = true
         image.layer.cornerRadius = 22.0
         image.layer.maskedCorners = [CACornerMask.layerMinXMaxYCorner, CACornerMask.layerMaxXMaxYCorner]
-        if let url = URL(string: newsItem.urlToImage ?? "") {
-            image.kf.setImage(with: url)
+        
+        if let imageData = newsItem.imageData {
+            image.image = UIImage.sd_image(with: imageData, scale: 1.0)
+        } else if var urlComponents = URLComponents(string: newsItem.urlToImage ?? "") {
+            urlComponents.query = nil
+            if let url = urlComponents.url {
+                image.sd_setImage(with: url, placeholderImage: UIImage(named: "No-Image-Placeholder"))
+            }
         }
+        
         return image
     }()
     
@@ -91,6 +102,7 @@ class DetailNewsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.largeTitleDisplayMode = .never
+        checkLike()
     }
     
     //private
@@ -160,8 +172,11 @@ class DetailNewsViewController: UIViewController {
     @objc
     private func didSelectLikeButton() {        
         likeButton.toggleImage()
-
-//        delegate?.didPressLike(newsItem: newsItem)
+        if likeButton.isLiked {
+            saveNewsItem(newsItem: newsItem, newsImage: imageView.image)
+        } else {
+            deleteNewsItem(newsItem: newsItem)
+        }
     }
     
     @objc
@@ -171,5 +186,24 @@ class DetailNewsViewController: UIViewController {
             vc.modalPresentationStyle = .popover
             showDetailViewController(vc, sender: self)
         }
+    }
+}
+
+//MARK: - CoreDate
+extension DetailNewsViewController {
+    //save in CoreData
+    private func saveNewsItem(newsItem: ArticlesNews, newsImage: UIImage?) {
+        coreDataStack.createFavoriteNews(newsItem: newsItem,
+                                         newsImageData: newsImage?.pngData())
+    }
+    
+    //delete from CoreData
+    private func deleteNewsItem(newsItem: ArticlesNews) {
+        coreDataStack.deleteNews(news: newsItem)
+    }
+    
+    private func checkLike() {
+        newsItem.isLiked = coreDataStack.getAllNews().contains(where: {$0.url == newsItem.url})
+        likeButton.setLike(newsItem.isLiked!)
     }
 }

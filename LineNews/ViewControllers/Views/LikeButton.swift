@@ -13,6 +13,12 @@ class LikeButton: UIButton {
         case unlike, like
     }
     
+    var isLiked: Bool {
+        get {
+            return likeState == .like
+        }
+    }
+    
     private var likeState: LikeButtonState = .like {
         didSet {
             setImage(UIImage(named: likeState == .unlike ? "heart" : "heart_fill"), for: .normal)
@@ -21,7 +27,7 @@ class LikeButton: UIButton {
     
     init() {
         super.init(frame: .zero)
-        toggleImage()
+        setLike(false)
     }
     
     required init?(coder: NSCoder) {
@@ -30,5 +36,9 @@ class LikeButton: UIButton {
     
     func toggleImage() {
         likeState = likeState == .unlike ? .like : .unlike
+    }
+    
+    func setLike(_ flag: Bool) {
+        likeState = flag ? .like : .unlike
     }
 }
