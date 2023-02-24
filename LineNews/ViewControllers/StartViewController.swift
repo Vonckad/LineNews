@@ -209,7 +209,7 @@ class StartViewController: UIViewController {
                 }
             }
         }
-    }
+    } 
 }
 
 //MARK: -  GifDelegate

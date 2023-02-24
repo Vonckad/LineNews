@@ -19,7 +19,7 @@ class Utils {
 
         let date: Date? = dateFormatterGet.date(from: string)
         return dateFormatterPrint.string(from: date!)
-    }
+    } 
     
     static func isValidEmailAddress(emailAddressString: String) -> Bool {
         
