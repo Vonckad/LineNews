@@ -20,6 +20,7 @@ class AppTextButton: UIView {
     private lazy var textLabel: UILabel = {
         var textLabel = UILabel()
         textLabel.font = UIFont.systemFont(ofSize: 13.0)
+        textLabel.textColor = .black
         return textLabel
     }()
     

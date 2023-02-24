@@ -52,10 +52,15 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = Theme.defaultBackgroundColor
         setupViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.tintColor = Theme.defaultButtonBackgroundColor
+        tabBarController?.tabBar.tintColor = Theme.defaultButtonBackgroundColor
     }
     
     //private

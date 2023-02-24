@@ -178,11 +178,8 @@ class StartViewController: UIViewController {
     
     @objc
     private func loginButtonAction() {
-        print("loginButtonAction")
-        
         switch style {
-        case .login:
-            //test@mail.ru, 123456
+        case .login: //test@mail.ru, 123456
             if loginTextField.text == "test@mail.ru" && passwordTextField.text == "123456" {
                 let mainVC = MainTabBarViewController()
                 mainVC.modalPresentationStyle = .fullScreen
@@ -229,18 +226,14 @@ extension StartViewController: AppTextButtonDelegate {
     func didTouchUpInside(appTextButton: AppTextButton) {
         switch appTextButton {
         case noAccountOrRegisterView:
-            print("noAccountView")
             if noAccountOrRegisterView.getTitle() == "Зарегистрироваться" {
-                print(".register")
                 let registerVC = UINavigationController(rootViewController: StartViewController(style: .register))
                 registerVC.modalPresentationStyle = .fullScreen
                 present(registerVC, animated: true)
             } else if noAccountOrRegisterView.getTitle() == "Войти" {
-                print(".login")
                 dismiss(animated: true)
             }
         case resetPasswordView:
-            print("resetPasswordView")
             navigationController?.pushViewController(StartViewController(style: .resetPassword),
                                                      animated: true)
         default:

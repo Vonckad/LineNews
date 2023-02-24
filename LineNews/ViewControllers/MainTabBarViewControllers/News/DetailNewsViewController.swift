@@ -40,6 +40,7 @@ class DetailNewsViewController: UIViewController {
         let label = UILabel()
         label.text = newsItem.title
         label.font = .boldSystemFont(ofSize: 20.0)
+        label.textColor = .black
         label.numberOfLines = 0
         return label
     }()
@@ -47,6 +48,7 @@ class DetailNewsViewController: UIViewController {
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.text = newsItem.description
+        label.textColor = .black
         label.font = .systemFont(ofSize: 13.0)
         label.numberOfLines = 0
         return label
@@ -75,6 +77,7 @@ class DetailNewsViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Читать на сайте", for: .normal)
         button.addTarget(nil, action: #selector(openWebView), for: .touchUpInside)
+        button.setTitleColor(Theme.defaultButtonBackgroundColor, for: .normal)
         return button
     }()
     

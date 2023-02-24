@@ -11,8 +11,6 @@ class MainTabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBar.backgroundColor = Theme.tabBarBackgroundColor
-        
         let profileVC = ProfileViewController(profile: "") {
             self.dismiss(animated: true)
         }
@@ -27,6 +25,10 @@ class MainTabBarViewController: UITabBarController {
                                                 title: "Профиль",
                                                 image: UIImage(named: "profile_image"))], animated: false)
     }
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .darkContent
+    }
 
     fileprivate func createNavController(for rootViewController: UIViewController,
                                          title: String,
@@ -38,5 +40,4 @@ class MainTabBarViewController: UITabBarController {
         rootViewController.navigationItem.title = title
         return navController
     }
-    
 }

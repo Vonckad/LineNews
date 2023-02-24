@@ -33,10 +33,11 @@ class NewsTableViewController: UITableViewController {
             make.centerY.equalTo(UIScreen.main.bounds.maxX / 2)
         }
         tableView.backgroundColor = Theme.defaultBackgroundColor
-        navigationController?.navigationBar.prefersLargeTitles = true
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 600
         tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.backButtonTitle = ""
         loadNews()
     }
@@ -44,9 +45,9 @@ class NewsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.largeTitleDisplayMode = .always
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.black]
-        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.black]
+        navigationController?.navigationBar.tintColor = Theme.defaultButtonBackgroundColor
+        tabBarController?.tabBar.tintColor = Theme.defaultButtonBackgroundColor
+        
         if newsModel.isEmpty {
             loadNews()
         }

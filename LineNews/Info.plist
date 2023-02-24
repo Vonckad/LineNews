@@ -24,11 +24,9 @@
 			</array>
 		</dict>
 	</dict>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>...</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>...</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>...</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleDarkContent</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

@@ -48,6 +48,13 @@ class MapViewController: UIViewController {
         setupButtons()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.barTintColor = .white
+        tabBarController?.tabBar.tintColor = Theme.defaultButtonBackgroundColor
+        tabBarController?.tabBar.shadowImage = nil
+    }
+    
     //private
     private func setupButtons() {
         view.addSubview(currentPositionButton)
