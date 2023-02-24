@@ -84,24 +84,7 @@ final class CoreDataStack: CoreDataStackNews, CoreDataStackUserProfile {
             print("Error fetching news \(error)")
         }
         return fetchedNews
-//        return getTEntity(type: NewsEntity.self)
     }
-    
-    
-  
-//    private func getTEntity<T: NSManagedObject>(type: T.Type) -> [T] {
-//        guard let request = T.fetchRequest() as? NSFetchRequest<T> else {
-//            fatalError("Cannot fetch \(type)")
-//        }
-//        var fetchedEntity: [T] = []
-//
-//        do {
-//            fetchedEntity = try managedContext.fetch(request)
-//        } catch let error {
-//            print("Error fetching news \(error)")
-//        }
-//        return fetchedEntity
-//    }
     
     func deleteNews(news: ArticlesNews) {
         if let newsEntity = getAllNewsEntity().first(where: {$0.url == news.url}) {
@@ -138,6 +121,5 @@ final class CoreDataStack: CoreDataStackNews, CoreDataStackUserProfile {
             print("Error fetching news \(error)")
         }
         return fetchedNews
-//        return getTEntity(type: UserProfile.self).last
     }
 }
