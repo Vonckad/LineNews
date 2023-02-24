@@ -20,7 +20,7 @@
 ### Вкладка “Профиль”
 - Сделана кнопка “Выход”, перебрасывает обратно на экран авторизации с показом алерта
 
-### Предпросмотр
+## Предпросмотр
 <p align="left">
 <img src="https://github.com/Vonckad/LineNews/blob/main/5.PNG" width="18%"> 
 <img src="https://github.com/Vonckad/LineNews/blob/main/4.PNG" width="18%"> 
@@ -28,3 +28,6 @@
 <img src="https://github.com/Vonckad/LineNews/blob/main/2.PNG" width="18%">
 <img src="https://github.com/Vonckad/LineNews/blob/main/1.PNG" width="18%">
 </p>
+
+## Возникшие сложностм в процессе
+1) В ответе сервера поле urlToImage иногда приходит с параметрами, не загружало изображения. Решение - удаляю все пармаметры после расширения изображения.
