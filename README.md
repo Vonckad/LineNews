@@ -19,3 +19,12 @@
 - Избранные новости хранятся в приложении, CoreData
 ### Вкладка “Профиль”
 - Сделана кнопка “Выход”, перебрасывает обратно на экран авторизации с показом алерта
+
+### Предпросмотр
+<p align="left">
+<img src="https://raw.githubusercontent.com/Vonckad/LineNews/main/1.png" width="20%"> 
+<img src="https://raw.githubusercontent.com/Vonckad/LineNews/main/2.png" width="20%"> 
+<img src="https://raw.githubusercontent.com/Vonckad/LineNews/main/3.png" width="20%">
+<img src="https://raw.githubusercontent.com/Vonckad/LineNews/main/4.png" width="20%">
+<img src="https://raw.githubusercontent.com/Vonckad/LineNews/main/5.png" width="20%">
+</p>
