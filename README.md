@@ -22,9 +22,9 @@
 
 ### Предпросмотр
 <p align="left">
-<img src="https://raw.githubusercontent.com/Vonckad/LineNews/main/1.png" width="20%"> 
-<img src="https://raw.githubusercontent.com/Vonckad/LineNews/main/2.png" width="20%"> 
-<img src="https://raw.githubusercontent.com/Vonckad/LineNews/main/3.png" width="20%">
-<img src="https://raw.githubusercontent.com/Vonckad/LineNews/main/4.png" width="20%">
-<img src="https://raw.githubusercontent.com/Vonckad/LineNews/main/5.png" width="20%">
+<img src="https://github.com/Vonckad/LineNews/blob/main/5.PNG" width="18%"> 
+<img src="https://github.com/Vonckad/LineNews/blob/main/4.PNG" width="18%"> 
+<img src="https://github.com/Vonckad/LineNews/blob/main/3.PNG" width="18%">
+<img src="https://github.com/Vonckad/LineNews/blob/main/2.PNG" width="18%">
+<img src="https://github.com/Vonckad/LineNews/blob/main/1.PNG" width="18%">
 </p>
