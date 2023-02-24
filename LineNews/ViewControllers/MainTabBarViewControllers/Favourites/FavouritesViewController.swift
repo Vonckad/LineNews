@@ -9,7 +9,7 @@ import UIKit
 
 class FavouritesViewController: UICollectionViewController {
 
-    private let coreDataStack = AppDelegate.sharedAppDelegate.coreDataStack
+    private let coreDataStack: CoreDataStackNews = AppDelegate.sharedAppDelegate.coreDataStack
     private lazy var favouritesNewsModel: [ArticlesNews] = coreDataStack.getAllNews()
     
     //Life cycle

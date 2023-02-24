@@ -9,7 +9,7 @@ import UIKit
 
 class NewsTableViewController: UITableViewController {
     
-    private let coreDataStack = AppDelegate.sharedAppDelegate.coreDataStack
+    private let coreDataStack: CoreDataStackNews = AppDelegate.sharedAppDelegate.coreDataStack
 
     private var newsModel: [ArticlesNews] = [] {
         didSet {

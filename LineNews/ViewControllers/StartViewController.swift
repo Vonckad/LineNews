@@ -15,8 +15,8 @@ class StartViewController: UIViewController {
         case login, register, resetPassword
     }
     
+    private var coreDataStack: CoreDataStackUserProfile = AppDelegate.sharedAppDelegate.coreDataStack
     private var style: StyleStartViewController
-    
     private var logoAnimationView: LogoAnimationView?
     
     private var loginTextField: AppTextField = {
@@ -67,6 +67,34 @@ class StartViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         navigationController?.navigationBar.layoutMargins.left = 30.0
         navigationItem.backButtonTitle = ""
+        checkStyle()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.largeTitleDisplayMode = style == .resetPassword ? .never: .always
+        navigationController?.navigationBar.prefersLargeTitles = style == .resetPassword ? false : true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let logoAnimationView = logoAnimationView {
+            logoAnimationView.logoGifImageView.startAnimatingGif()
+        }
+    }
+    
+    //private
+    private func startAnimation() {
+        if let logoAnimationView = logoAnimationView {
+            view.addSubview(logoAnimationView)
+            logoAnimationView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+            logoAnimationView.logoGifImageView.delegate = self
+        }
+    }
+    
+    private func checkStyle() {
         switch style {
         case .login:
             logoAnimationView = LogoAnimationView()
@@ -84,30 +112,6 @@ class StartViewController: UIViewController {
             navigationController?.setNavigationBarHidden(false, animated: true)
             title = "Сброс пароля"
             resetPasswordSetups()
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if let logoAnimationView = logoAnimationView {
-            logoAnimationView.logoGifImageView.startAnimatingGif()
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationItem.largeTitleDisplayMode = style == .resetPassword ? .never: .always
-        navigationController?.navigationBar.prefersLargeTitles = style == .resetPassword ? false : true
-    }
-    
-    //private
-    private func startAnimation() {
-        if let logoAnimationView = logoAnimationView {
-            view.addSubview(logoAnimationView)
-            logoAnimationView.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
-            logoAnimationView.logoGifImageView.delegate = self
         }
     }
     
@@ -180,36 +184,62 @@ class StartViewController: UIViewController {
     private func loginButtonAction() {
         switch style {
         case .login: //test@mail.ru, 123456
-            if loginTextField.text == "test@mail.ru" && passwordTextField.text == "123456" {
-                let mainVC = MainTabBarViewController()
-                mainVC.modalPresentationStyle = .fullScreen
-                present(mainVC, animated: false)
-            } else {
-                UIAlertController.showAlertView(viewController: self, style: .incorrectUsernameOrPassword)
-            }
-            
+            goLogin()
         case .register:
-            if Utils.isValidEmailAddress(emailAddressString: loginTextField.text ?? "")
-                || passwordTextField.text == "" {
-                UIAlertController.showAlertView(viewController: self, style: .emptyFields)
-            } else {
+            goRegister()
+        case .resetPassword:
+            goResetPassword()
+        }
+    }
+    
+    private func goLogin() {
+        if loginTextField.text == "test@mail.ru" && passwordTextField.text == "123456" {
+            let mainVC = MainTabBarViewController()
+            mainVC.modalPresentationStyle = .fullScreen
+            present(mainVC, animated: false) { [weak self] in
+                guard let self = self else { return }
+                self.saveUser()
+            }
+        } else {
+            UIAlertController.showAlertView(viewController: self, style: .incorrectUsernameOrPassword)
+        }
+    }
+    
+    private func goRegister() {
+        if loginTextField.text == "" || passwordTextField.text == "" {
+            UIAlertController.showAlertView(viewController: self, style: .emptyFields)
+        } else {
+            if Utils.isValidEmailAddress(emailAddressString: loginTextField.text ?? "") {
                 let mainVC = MainTabBarViewController()
                 mainVC.modalPresentationStyle = .fullScreen
-                present(mainVC, animated: false)
-            }
-            
-        case .resetPassword:
-            let isValidEmail = Utils.isValidEmailAddress(emailAddressString: loginTextField.text ?? "")
-            UIAlertController.showAlertView(viewController: self,
-                                            style: isValidEmail
-                                            ? .successfully : .incorrectnessMail) { [weak self] _ in
-                guard let self = self else { return }
-                if isValidEmail {
-                    self.navigationController?.popViewController(animated: true)
+                present(mainVC, animated: false) { [weak self] in
+                    guard let self = self else { return }
+                    self.saveUser()
                 }
+            } else {
+                UIAlertController.showAlertView(viewController: self, style: .incorrectnessMail)
             }
         }
-    } 
+    }
+    
+    private func goResetPassword() {
+        let isValidEmail = Utils.isValidEmailAddress(emailAddressString: loginTextField.text ?? "")
+        UIAlertController.showAlertView(viewController: self,
+                                        style: isValidEmail
+                                        ? .successfully : .incorrectnessMail) { [weak self] _ in
+            guard let self = self else { return }
+            if isValidEmail {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
+    //CoreData
+    private func saveUser() {
+        coreDataStack.saveUserProfile(UserProfileModel(name: "name",
+                                                       email: loginTextField.text,
+                                                       image: nil))
+    }
 }
 
 //MARK: -  GifDelegate

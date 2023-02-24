@@ -9,6 +9,8 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    private var coreDataStack: CoreDataStackUserProfile = AppDelegate.sharedAppDelegate.coreDataStack
+    
     private let avatarImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "avatar"))
         imageView.contentMode = .scaleAspectFill
@@ -55,6 +57,7 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = Theme.defaultBackgroundColor
         setupViews()
+        getUserProfile()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,5 +104,12 @@ class ProfileViewController: UIViewController {
             guard let self = self else { return }
             self.dismissHandler()
         }
+    }
+    
+    //CoreData
+    private func getUserProfile() {
+        let userProfile = coreDataStack.getUserProfile()
+        nameTextField.text = userProfile?.name
+        mailTextField.text = userProfile?.email
     }
 }

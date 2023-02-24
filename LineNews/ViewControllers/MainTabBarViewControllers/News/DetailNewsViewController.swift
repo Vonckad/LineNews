@@ -11,7 +11,7 @@ import SafariServices
 
 class DetailNewsViewController: UIViewController {
     
-    private let coreDataStack = AppDelegate.sharedAppDelegate.coreDataStack
+    private let coreDataStack: CoreDataStackNews = AppDelegate.sharedAppDelegate.coreDataStack
     private var newsItem: ArticlesNews
     
     private var contentView: UIView = {
