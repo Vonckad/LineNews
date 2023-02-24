@@ -17,7 +17,6 @@ class MapViewController: UIViewController {
         
         let initialLocation = CLLocation(latitude: 64.538686, longitude: 40.518267)
         appleMapView.centerToLocation(initialLocation, regionRadius: 2000)
-        appleMapView.overrideUserInterfaceStyle = .light
         appleMapView.addAnnotations(artworks)
         return appleMapView
     }()
@@ -46,13 +45,6 @@ class MapViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         view.addSubview(appleMapView)
         setupButtons()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tabBarController?.tabBar.barTintColor = .white
-        tabBarController?.tabBar.tintColor = Theme.defaultButtonBackgroundColor
-        tabBarController?.tabBar.shadowImage = nil
     }
     
     //private

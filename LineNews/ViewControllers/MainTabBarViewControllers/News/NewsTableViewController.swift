@@ -47,7 +47,7 @@ class NewsTableViewController: UITableViewController {
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.tintColor = Theme.defaultButtonBackgroundColor
         tabBarController?.tabBar.tintColor = Theme.defaultButtonBackgroundColor
-        
+        tabBarController?.tabBar.backgroundColor = .white
         if newsModel.isEmpty {
             loadNews()
         }

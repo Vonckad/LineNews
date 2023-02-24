@@ -60,7 +60,6 @@ class ProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.tintColor = Theme.defaultButtonBackgroundColor
-        tabBarController?.tabBar.tintColor = Theme.defaultButtonBackgroundColor
     }
     
     //private

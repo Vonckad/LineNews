@@ -26,6 +26,9 @@ class FavouritesViewController: UICollectionViewController {
         collectionView.backgroundColor = Theme.defaultBackgroundColor
         collectionView.contentInset = UIEdgeInsets(top: 18.0, left: 15.0, bottom: 0, right: 15.0)
         collectionView.register(FavouritesNewsCollectionViewCell.self, forCellWithReuseIdentifier: "favouritesNewsIdentifier")
+        collectionView.isScrollEnabled = true
+        collectionView.isUserInteractionEnabled = true
+        collectionView.alwaysBounceVertical = true
         navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.prefersLargeTitles = true
         favouritesNewsModel = coreDataStack.getAllNews()
@@ -35,8 +38,7 @@ class FavouritesViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.tintColor = Theme.defaultButtonBackgroundColor
-        tabBarController?.tabBar.tintColor = Theme.defaultButtonBackgroundColor
-        
+        navigationItem.largeTitleDisplayMode = .always
         favouritesNewsModel = coreDataStack.getAllNews()
         collectionView.reloadData()
     }
