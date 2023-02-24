@@ -189,7 +189,8 @@ class StartViewController: UIViewController {
             }
             
         case .register:
-            if loginTextField.text == "" || passwordTextField.text == "" {
+            if Utils.isValidEmailAddress(emailAddressString: loginTextField.text ?? "")
+                || passwordTextField.text == "" {
                 UIAlertController.showAlertView(viewController: self, style: .emptyFields)
             } else {
                 let mainVC = MainTabBarViewController()
@@ -198,11 +199,12 @@ class StartViewController: UIViewController {
             }
             
         case .resetPassword:
+            let isValidEmail = Utils.isValidEmailAddress(emailAddressString: loginTextField.text ?? "")
             UIAlertController.showAlertView(viewController: self,
-                                            style: loginTextField.text == ""
-                                            ? .incorrectnessMail : .successfully) { [weak self] _ in
+                                            style: isValidEmail
+                                            ? .successfully : .incorrectnessMail) { [weak self] _ in
                 guard let self = self else { return }
-                if self.loginTextField.text != "" {
+                if isValidEmail {
                     self.navigationController?.popViewController(animated: true)
                 }
             }
@@ -210,7 +212,7 @@ class StartViewController: UIViewController {
     }
 }
 
-//MARK: - SwiftyGifDelegate
+//MARK: -  GifDelegate
 extension StartViewController: SwiftyGifDelegate {
     func gifDidStop(sender: UIImageView) {
         if let logoAnimationView = logoAnimationView {
